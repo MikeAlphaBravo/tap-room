@@ -26,7 +26,7 @@ import { Beverage } from './beverage-model';
         <option [value]="6"> High Price </option>
         <option [value]="7"> High Price </option>
       </select>
-      <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newABV.value); newName.value=''; newBrand.value=''; newABV.value=''">Add</button>
+      <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newABV.value); newName.value=''; newBrand.value=''; newABV.value='';">Add</button>
     </div>
   `
 })

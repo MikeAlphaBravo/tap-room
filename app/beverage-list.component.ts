@@ -4,13 +4,21 @@ import { Beverage } from './beverage-model';
 @Component({
   selector: 'beverage-list',
   template: `
+  <select (change)="onChange($event.target.value)">
+      <option value="allBeverages">All Beverages</option>
+      <option value="emptyBeverages">Empty Beverages</option>
+      <option value="fullBeverages" selected="selected">Full Beverages</option>
+    </select>
   <ol>
-    <li *ngFor="let currentBeverage of childBeverageList"><span [class]="priceColor(currentBeverage)" (click)="isSold(currentBeverage)">{{currentBeverage.name}}</span> <button class="btn btn-primary" (click)="editButtonHasBeenClicked(currentBeverage)">Edit!</button><br>
-    <ul>
-      <li>Price: {{currentBeverage.price}}</li>
-      <li>Brewery: {{currentBeverage.brand}}</li>
-      <li>ABV: {{currentBeverage.alcoholContent}}</li>
-    </ul>
+    <li  *ngFor="let currentBeverage of childBeverageList | empty:filterByEmpty"><span (click)="isSold(currentBeverage)"  [class]="priceColor(currentBeverage)">{{currentBeverage.name}}</span>
+      <input *ngIf="currentBeverage.poured === true" type="checkbox" checked (click)="toggleDone(currentBeverage, false)"/>
+      <input *ngIf="currentBeverage.poured === false" type="checkbox" (click)="toggleDone(currentBeverage, true)"/>
+      <button class="btn btn-primary" (click)="editButtonHasBeenClicked(currentBeverage)">Edit!</button><br>
+      <ul>
+        <li>Price: {{currentBeverage.price}}</li>
+        <li>Brewery: {{currentBeverage.brand}}</li>
+        <li>ABV: {{currentBeverage.alcoholContent}}</li>
+      </ul>
     </li>
   </ol>
   `
@@ -19,6 +27,11 @@ import { Beverage } from './beverage-model';
 export class BeverageListComponent {
   @Input() childBeverageList: Beverage[];
   @Output() clickSender = new EventEmitter();
+  filterByEmpty: string = "fullBeverages";
+
+  onChange(optionFromMenu) {
+    this.filterByEmpty = optionFromMenu;
+  }
 
   editButtonHasBeenClicked(beverageToEdit: Beverage) {
     this.clickSender.emit(beverageToEdit);
@@ -45,4 +58,8 @@ export class BeverageListComponent {
       alert("This beverage is not poured. Better get to tapping!");
     }
   }
+
+  toggleDone(clickedBeverage: Beverage, setEmpty: boolean) {
+   clickedBeverage.poured = setEmpty;
+ }
 }

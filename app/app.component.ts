@@ -52,6 +52,10 @@ export class AppComponent {
     this.selectedBeverage = clickedBeverage;
   }
 
+  finishedEditing() {
+    this.selectedBeverage = null;
+  }
+
   isSold(clickedBeverage: Beverage) {
     if(clickedBeverage.poured === true) {
       alert("This beverage is poured!");
@@ -61,21 +65,17 @@ export class AppComponent {
   }
 
   priceColor(beverage){
-   if (beverage.price === 7){
-     return "bg-danger";
-   } else if (beverage.price === 6) {
-     return  "bg-danger";
-   } else if (beverage.price === 5) {
-     return  "bg-warning";
-   } else if (beverage.price === 4) {
-     return  "bg-warning";
-   } else {
-     return "bg-info";
-   }
- }
-
- finishedEditing() {
-    this.selectedBeverage = null;
+    if (beverage.price === 7){
+      return "bg-danger";
+    } else if (beverage.price === 6) {
+      return  "bg-warning";
+    } else if (beverage.price === 5) {
+      return  "bg-primary";
+    } else if (beverage.price === 4) {
+      return  "bg-info";
+    } else {
+      return "bg-success";
+    }
   }
 }
 export class Beverage {

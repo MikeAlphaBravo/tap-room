@@ -22,6 +22,9 @@ var AppComponent = (function () {
     AppComponent.prototype.editBeverage = function (clickedBeverage) {
         this.selectedBeverage = clickedBeverage;
     };
+    AppComponent.prototype.finishedEditing = function () {
+        this.selectedBeverage = null;
+    };
     AppComponent.prototype.isSold = function (clickedBeverage) {
         if (clickedBeverage.poured === true) {
             alert("This beverage is poured!");
@@ -35,20 +38,17 @@ var AppComponent = (function () {
             return "bg-danger";
         }
         else if (beverage.price === 6) {
-            return "bg-danger";
+            return "bg-warning";
         }
         else if (beverage.price === 5) {
-            return "bg-warning";
+            return "bg-primary";
         }
         else if (beverage.price === 4) {
-            return "bg-warning";
-        }
-        else {
             return "bg-info";
         }
-    };
-    AppComponent.prototype.finishedEditing = function () {
-        this.selectedBeverage = null;
+        else {
+            return "bg-success";
+        }
     };
     return AppComponent;
 }());

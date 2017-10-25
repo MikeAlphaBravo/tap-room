@@ -40,7 +40,6 @@ var BeverageListComponent = (function () {
     };
     BeverageListComponent.prototype.isSold = function (clickedBeverage) {
         if (clickedBeverage.poursLeft >= 11) {
-            alert('One pour recorded.');
             clickedBeverage.poursLeft -= 1;
         }
         else if (clickedBeverage.poursLeft >= 1) {
@@ -68,7 +67,7 @@ __decorate([
 BeverageListComponent = __decorate([
     core_1.Component({
         selector: 'beverage-list',
-        template: "\n  <select (change)=\"onChange($event.target.value)\">\n      <option value=\"allBeverages\">All Beverages</option>\n      <option value=\"emptyBeverages\">Empty Beverages</option>\n      <option value=\"fullBeverages\" selected=\"selected\">Full Beverages</option>\n    </select>\n  <ol>\n    <li  *ngFor=\"let currentBeverage of childBeverageList | empty:filterByEmpty\"><span (click)=\"isSold(currentBeverage)\"  [class]=\"priceColor(currentBeverage)\">{{currentBeverage.name}}</span>\n      <input *ngIf=\"currentBeverage.poured === true\" type=\"checkbox\" checked (click)=\"toggleDone(currentBeverage, false)\"/>\n      <input *ngIf=\"currentBeverage.poured === false\" type=\"checkbox\" (click)=\"toggleDone(currentBeverage, true)\"/>\n      <button class=\"btn btn-primary\" (click)=\"editButtonHasBeenClicked(currentBeverage)\">Edit!</button><br>\n      <ul>\n        <li>Price: {{currentBeverage.price}}</li>\n        <li>Brewery: {{currentBeverage.brand}}</li>\n        <li>ABV: {{currentBeverage.alcoholContent}}</li>\n      </ul>\n    </li>\n  </ol>\n  "
+        template: "\n  <select (change)=\"onChange($event.target.value)\">\n      <option value=\"allBeverages\">All Beverages</option>\n      <option value=\"emptyBeverages\">Empty Beverages</option>\n      <option value=\"fullBeverages\" selected=\"selected\">Full Beverages</option>\n      <option value=\"underTenBeverages\">Beverages under 10 pours left</option>\n      <option value=\"abvBeverages\">By ABV</option>\n    </select>\n  <ol>\n    <li  *ngFor=\"let currentBeverage of childBeverageList | empty:filterByEmpty\"><span (click)=\"isSold(currentBeverage)\"  [class]=\"priceColor(currentBeverage)\">{{currentBeverage.name}}</span>\n      <input *ngIf=\"currentBeverage.poured === true\" type=\"checkbox\" checked (click)=\"toggleDone(currentBeverage, false)\"/>\n      <input *ngIf=\"currentBeverage.poured === false\" type=\"checkbox\" (click)=\"toggleDone(currentBeverage, true)\"/>\n      <button class=\"btn btn-primary\" (click)=\"editButtonHasBeenClicked(currentBeverage)\">Edit!</button><br>\n      <ul>\n        <li>Price: {{currentBeverage.price}}</li>\n        <li>Brewery: {{currentBeverage.brand}}</li>\n        <li>ABV: {{currentBeverage.alcoholContent}}</li>\n        <li>Pours Left: {{currentBeverage.poursLeft}}</li>\n      </ul>\n    </li>\n  </ol>\n  "
     })
 ], BeverageListComponent);
 exports.BeverageListComponent = BeverageListComponent;

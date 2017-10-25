@@ -28,6 +28,22 @@ var EmptyPipe = (function () {
             }
             return output;
         }
+        else if (desiredEmpty === "underTenBeverages") {
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].poursLeft <= 10) {
+                    output.push(input[i]);
+                }
+            }
+            return output;
+        }
+        else if (desiredEmpty === "abvBeverages") {
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].poured === false) {
+                    output.push(input[i]);
+                }
+            }
+            return output;
+        }
         else {
             return input;
         }

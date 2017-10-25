@@ -8,6 +8,8 @@ import { Beverage } from './beverage-model';
       <option value="allBeverages">All Beverages</option>
       <option value="emptyBeverages">Empty Beverages</option>
       <option value="fullBeverages" selected="selected">Full Beverages</option>
+      <option value="underTenBeverages">Beverages under 10 pours left</option>
+      <option value="abvBeverages">By ABV</option>
     </select>
   <ol>
     <li  *ngFor="let currentBeverage of childBeverageList | empty:filterByEmpty"><span (click)="isSold(currentBeverage)"  [class]="priceColor(currentBeverage)">{{currentBeverage.name}}</span>
@@ -18,6 +20,7 @@ import { Beverage } from './beverage-model';
         <li>Price: {{currentBeverage.price}}</li>
         <li>Brewery: {{currentBeverage.brand}}</li>
         <li>ABV: {{currentBeverage.alcoholContent}}</li>
+        <li>Pours Left: {{currentBeverage.poursLeft}}</li>
       </ul>
     </li>
   </ol>
@@ -53,7 +56,6 @@ export class BeverageListComponent {
 
   isSold(clickedBeverage: Beverage) {
     if(clickedBeverage.poursLeft >= 11) {
-      alert('One pour recorded.')
       clickedBeverage.poursLeft -= 1;
     } else if(clickedBeverage.poursLeft >= 1) {
       alert("This keg is running low.");

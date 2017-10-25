@@ -10,6 +10,13 @@ import { Beverage } from './beverage-model';
     <h3>Edit Beverage</h3>
     <label>Enter Beverage Name:</label>
     <input type="text" [(ngModel)]="childSelectedBeverage.name">
+    <br>
+    <label>Enter Beverage Brewery:</label>
+    <input type="text" [(ngModel)]="childSelectedBeverage.brand">
+    <br>
+    <label>Enter Beverage ABV:</label>
+    <input type="text" [(ngModel)]="childSelectedBeverage.alcoholContent">
+    <br>
     <label>Enter Beverage Price Bracket (1-3):</label>
     <br>
     <input type="radio" [(ngModel)]="childSelectedBeverage.price" [value]="3">3 (Low Cost)<br>

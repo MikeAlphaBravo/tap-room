@@ -10,6 +10,9 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component");
 var forms_1 = require("@angular/forms");
+var beverage_list_component_1 = require("./beverage-list.component");
+var edit_beverage_component_1 = require("./edit-beverage.component");
+var new_beverage_component_1 = require("./new-beverage.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -18,7 +21,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-        declarations: [app_component_1.AppComponent],
+        declarations: [app_component_1.AppComponent, beverage_list_component_1.BeverageListComponent, edit_beverage_component_1.EditBeverageComponent, new_beverage_component_1.NewBeverageComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

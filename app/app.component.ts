@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
       </li>
     </ol>
     <hr>
-    <div>
+    <div *ngIf="selectedBeverage">
       <h3>{{selectedBeverage.name}}</h3>
       <p>Beverage Poured? {{selectedBeverage.poured}}</p>
       <h3>Edit Beverage</h3>
@@ -28,6 +28,8 @@ import { Component } from '@angular/core';
       <input type="radio" [(ngModel)]="selectedBeverage.price" [value]="5">5 (Medium Cost)<br>
       <input type="radio" [(ngModel)]="selectedBeverage.price" [value]="6">6 (High Cost)<br>
       <input type="radio" [(ngModel)]="selectedBeverage.price" [value]="7">7 (High Cost)
+      <hr>
+      <button (click)="finishedEditing()">Done</button>
     </div>
   </div>
 
@@ -44,7 +46,7 @@ export class AppComponent {
     new Beverage('Urine Town', 'Water Beer', 3, 1.8)
   ];
 
-  selectedBeverage: Beverage = this.beverages[0];
+  selectedBeverage: Beverage = null;
 
   editBeverage(clickedBeverage) {
     this.selectedBeverage = clickedBeverage;
@@ -71,6 +73,10 @@ export class AppComponent {
      return "bg-info";
    }
  }
+
+ finishedEditing() {
+    this.selectedBeverage = null;
+  }
 }
 export class Beverage {
   public poured: boolean = false;

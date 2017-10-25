@@ -17,7 +17,7 @@ var AppComponent = (function () {
             new Beverage('Hold Onto Your Hats', 'Get it Co.', 7, 8.3),
             new Beverage('Urine Town', 'Water Beer', 3, 1.8)
         ];
-        this.selectedBeverage = this.beverages[0];
+        this.selectedBeverage = null;
     }
     AppComponent.prototype.editBeverage = function (clickedBeverage) {
         this.selectedBeverage = clickedBeverage;
@@ -47,12 +47,15 @@ var AppComponent = (function () {
             return "bg-info";
         }
     };
+    AppComponent.prototype.finishedEditing = function () {
+        this.selectedBeverage = null;
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app-root',
-        template: "\n  <div class=\"container\">\n    <h1>Tap Room Keg Tracker</h1>\n    <ol>\n      <li *ngFor=\"let beverage of beverages\"><span [class]=\"priceColor(beverage)\" (click)=\"isSold(beverage)\">{{beverage.name}}</span> <button class=\"btn btn-primary\" (click)=\"editBeverage(beverage)\">Edit!</button><br>\n      <ul>\n        <li>Price: {{beverage.price}}</li>\n        <li>Brewery: {{beverage.brand}}</li>\n        <li>ABV: {{beverage.alcoholContent}}</li>\n      </ul>\n      </li>\n    </ol>\n    <hr>\n    <div>\n      <h3>{{selectedBeverage.name}}</h3>\n      <p>Beverage Poured? {{selectedBeverage.poured}}</p>\n      <h3>Edit Beverage</h3>\n      <label>Enter Beverage Name:</label>\n      <input type=\"text\" [(ngModel)]=\"selectedBeverage.name\">\n      <label>Enter Beverage Price Bracket (1-3):</label>\n      <br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"3\">3 (Low Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"4\">4 (Medium Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"5\">5 (Medium Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"6\">6 (High Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"7\">7 (High Cost)\n    </div>\n  </div>\n\n  "
+        template: "\n  <div class=\"container\">\n    <h1>Tap Room Keg Tracker</h1>\n    <ol>\n      <li *ngFor=\"let beverage of beverages\"><span [class]=\"priceColor(beverage)\" (click)=\"isSold(beverage)\">{{beverage.name}}</span> <button class=\"btn btn-primary\" (click)=\"editBeverage(beverage)\">Edit!</button><br>\n      <ul>\n        <li>Price: {{beverage.price}}</li>\n        <li>Brewery: {{beverage.brand}}</li>\n        <li>ABV: {{beverage.alcoholContent}}</li>\n      </ul>\n      </li>\n    </ol>\n    <hr>\n    <div *ngIf=\"selectedBeverage\">\n      <h3>{{selectedBeverage.name}}</h3>\n      <p>Beverage Poured? {{selectedBeverage.poured}}</p>\n      <h3>Edit Beverage</h3>\n      <label>Enter Beverage Name:</label>\n      <input type=\"text\" [(ngModel)]=\"selectedBeverage.name\">\n      <label>Enter Beverage Price Bracket (1-3):</label>\n      <br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"3\">3 (Low Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"4\">4 (Medium Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"5\">5 (Medium Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"6\">6 (High Cost)<br>\n      <input type=\"radio\" [(ngModel)]=\"selectedBeverage.price\" [value]=\"7\">7 (High Cost)\n      <hr>\n      <button (click)=\"finishedEditing()\">Done</button>\n    </div>\n  </div>\n\n  "
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

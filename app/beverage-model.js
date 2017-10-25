@@ -7,6 +7,7 @@ var Beverage = (function () {
         this.price = price;
         this.alcoholContent = alcoholContent;
         this.poured = false;
+        this.poursLeft = 20;
     }
     return Beverage;
 }());

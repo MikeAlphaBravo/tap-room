@@ -39,11 +39,17 @@ var BeverageListComponent = (function () {
         }
     };
     BeverageListComponent.prototype.isSold = function (clickedBeverage) {
-        if (clickedBeverage.poured === true) {
-            alert("This beverage is poured!");
+        if (clickedBeverage.poursLeft >= 11) {
+            alert('One pour recorded.');
+            clickedBeverage.poursLeft -= 1;
+        }
+        else if (clickedBeverage.poursLeft >= 1) {
+            alert("This keg is running low.");
+            clickedBeverage.poursLeft -= 1;
         }
         else {
-            alert("This beverage is not poured. Better get to tapping!");
+            alert('This keg is empty.');
+            clickedBeverage.poured = true;
         }
     };
     BeverageListComponent.prototype.toggleDone = function (clickedBeverage, setEmpty) {

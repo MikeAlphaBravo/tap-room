@@ -10,7 +10,7 @@ import {Beverage} from './beverage-model';
 
 export class EmptyPipe implements PipeTransform {
   transform(input: Beverage[], desiredEmpty) {
-    var output: Beverage[] = [];
+    let output: Beverage[] = [];
     if(desiredEmpty === "emptyBeverages") {
       for (var i = 0; i < input.length; i++) {
         if (input[i].poured === true) {
@@ -33,11 +33,9 @@ export class EmptyPipe implements PipeTransform {
       }
       return output;
     } else if (desiredEmpty === "abvBeverages") {
-      for (var i = 0; i < input.length; i++) {
-        if (input[i].poured === false) {
-          output.push(input[i]);
-        }
-      }
+      output = input.sort(function(a, b) {
+        return b.alcoholContent - a.alcoholContent;
+      })
       return output;
     } else {
       return input;

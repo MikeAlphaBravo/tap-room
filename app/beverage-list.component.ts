@@ -12,7 +12,7 @@ import { Beverage } from './beverage-model';
       <option value="abvBeverages">By ABV</option>
     </select>
   <ol>
-    <li  *ngFor="let currentBeverage of childBeverageList | empty:filterByEmpty"><span (click)="isSold(currentBeverage)"  [class]="priceColor(currentBeverage)">{{currentBeverage.name}}</span>
+    <li *ngFor="let currentBeverage of childBeverageList | empty:filterByEmpty"><span (click)="isSold(currentBeverage)"  [class]="priceColor(currentBeverage)">{{currentBeverage.name}}</span>
       <input *ngIf="currentBeverage.poured === true" type="checkbox" checked (click)="toggleDone(currentBeverage, false)"/>
       <input *ngIf="currentBeverage.poured === false" type="checkbox" (click)="toggleDone(currentBeverage, true)"/>
       <button class="btn btn-primary" (click)="editButtonHasBeenClicked(currentBeverage)">Edit!</button><br>

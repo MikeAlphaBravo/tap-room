@@ -3,7 +3,7 @@
   "description": "",
   "main": "",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/phuzisham/tap-room",
   "ignore": [
     "**/.*",
     "node_modules",

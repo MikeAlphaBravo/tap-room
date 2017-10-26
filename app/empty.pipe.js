@@ -37,11 +37,9 @@ var EmptyPipe = (function () {
             return output;
         }
         else if (desiredEmpty === "abvBeverages") {
-            for (var i = 0; i < input.length; i++) {
-                if (input[i].poured === false) {
-                    output.push(input[i]);
-                }
-            }
+            output = input.sort(function (a, b) {
+                return b.alcoholContent - a.alcoholContent;
+            });
             return output;
         }
         else {
